@@ -2,12 +2,23 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 
+import { exerciseOptions, fetchData } from '../utils/fetchData';
+
 const SearchExercises = () => {
     const [search, setSearch] = useState('')
 
     const handleSearch = async () => {
         if(search) { //if search exists, fetch data
-            const exercisesData = await fetchData();
+            const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
+        
+            const searchedExercises = exerciseData.filter(
+               //callback function we get each exercise and check if exercise name includes search term we're looking for
+               // include object criterias for other searches
+                (exercise) => exercise.name.toLowerCase().includes(search)
+                || exercise.target.toLowerCase().includes(search)
+                || exercise.equipment.toLowerCase().includes(search)
+                || exercise.bodyPart.toLowerCase().includes(search)
+            )
         }
     }
 
