@@ -23,9 +23,9 @@ const ExerciseDetail = () => {
       exerciseOptions); //exerciseOption is the key that allows us to make the request
       setExerciseDetail(exerciseDetailData);
       //gives video link only for specific 
-      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?q=$
-      {exerciseDetailData.name}`, youtubeOptions);
-      setExerciseVideos(exerciseVideosData)
+      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=$
+      {exerciseDetailData.name} exercise`, youtubeOptions);
+      setExerciseVideos(exerciseVideosData.contents)
 
     }
 
