@@ -27,6 +27,10 @@ const ExerciseDetail = () => {
       {exerciseDetailData.name} exercise`, youtubeOptions);
       setExerciseVideos(exerciseVideosData.contents)
 
+      //api call to get similar exercises to target the same muscle group
+      const targetMuscleExercisesData = await fetchData(`${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`, exerciseOptions)
+      //api call to get similar exercises using the same equipment
+      const equipmentMuscleExercisesData = await fetchData(`${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`, exerciseOptions)
     }
 
     fetchExercisesData();
